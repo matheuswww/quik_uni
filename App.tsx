@@ -7,11 +7,8 @@ import {
   Menu, 
   X, 
   Instagram, 
-  Mail, 
   ArrowRight,
   MessageCircle,
-  MapPin,
-  Phone
 } from 'lucide-react';
 
 const Reveal: React.FC<{ children?: React.ReactNode, delay?: number }> = ({ children, delay = 0 }) => {
@@ -111,7 +108,7 @@ const Navbar = () => {
           >
             <img 
               src="/img/logo.png" 
-              alt="QK Uniformes Logo" 
+              alt="Quik uniformes Logo" 
               className="h-24 w-auto transform group-hover:scale-105 transition-transform" 
             />
           </div>
@@ -199,7 +196,7 @@ const Hero = () => {
           </div>
           <div className="animate-slide-up [animation-delay:200ms]">
             <p className="text-lg md:text-2xl text-zinc-400 mb-10 max-w-xl mx-auto md:mx-0 leading-relaxed">
-              A QK oferece soluções práticas e duráveis em uniformes. Focamos na eficiência da entrega e na excelência do produto final para sua empresa ou negócio.
+              A Quik uniformes oferece soluções práticas e duráveis em uniformes. Focamos na eficiência da entrega e na excelência do produto final para sua empresa ou negócio.
             </p>
           </div>
           <div className="animate-slide-up [animation-delay:400ms] flex justify-center md:justify-start">
@@ -262,12 +259,12 @@ const AboutSection = () => {
               <span className="text-xs font-bold tracking-[0.4em] text-blue-500 uppercase mb-6 block">Sobre Nós</span>
               <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 italic font-serif leading-tight">Eficiência em cada etapa.</h2>
               <div className="space-y-6 text-zinc-400 leading-relaxed text-lg md:text-xl">
-                <p>
-                  A QK Uniformes é focada em entregar soluções têxteis de alto desempenho. Combinamos agilidade logística com rigor técnico para garantir que sua equipe esteja sempre bem equipada.
-                </p>
-                <p>
-                  Nosso compromisso é com a durabilidade e o custo-benefício, utilizando materiais de primeira linha e processos otimizados que elevam o padrão de qualidade do seu negócio.
-                </p>
+              <p>
+                A Quik Uniformes é dedicada a oferecer produtos de alta qualidade, sempre priorizando excelência, cuidado nos detalhes e satisfação dos clientes.
+              </p>
+              <p>
+                Nossa fundadora possui mais de 10 anos de experiência no mercado, trazendo conhecimento, compromisso e visão estratégica para entregar soluções confiáveis e um atendimento próximo e eficiente.
+              </p>
               </div>
             </div>
           </Reveal>
