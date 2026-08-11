@@ -1,0 +1,11 @@
+Esta pasta está vazia de propósito.
+
+As quatro peças do Estúdio 3D Quik são geradas por geometria no navegador
+(assets/js/modules/peca3d.js), a partir do bloco "forma" de cada peça em
+assets/js/dados.js. Não há modelo de terceiro no projeto — nem dúvida de
+licença, nem procedência para conferir.
+
+Para usar um modelo próprio, coloque o .glb aqui e informe o caminho no campo
+"glb" da peça, em assets/js/dados.js. As malhas precisam se chamar frente,
+costas, mangaEsq e mangaDir, com UV de 0 a 1 em cada painel. O passo a passo
+está no README.md, item 5.

@@ -1,0 +1,434 @@
+/* ==========================================================================
+   Quik Uniformes — estrutura: preloader, cabeçalho, espinha de costura,
+   cascas de seção, rodapé, lightbox
+   ========================================================================== */
+
+/* ==========================  preloader  ================================== */
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: var(--breu-fundo);
+  transition: clip-path 900ms var(--curva-saida), opacity 300ms linear 600ms;
+  clip-path: inset(0 0 0 0);
+}
+body[data-preload="pronto"] .preloader {
+  /* a página é revelada como um tecido levantado */
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+  pointer-events: none;
+}
+body[data-preload="off"] .preloader,
+.preloader[hidden] { display: none; }
+
+.preloader__palco { display: grid; justify-items: center; gap: 1.6rem; }
+
+.preloader__marca { width: clamp(9rem, 26vw, 14rem); height: auto; overflow: visible; }
+.preloader__pontos path { stroke-dasharray: 7 11; }
+.preloader__cheio { opacity: 0; transition: opacity 520ms var(--curva); }
+.preloader.costurado .preloader__cheio { opacity: 1; }
+
+.preloader__texto {
+  font: 400 0.72rem/1 var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--aco-fosco);
+  margin: 0;
+}
+.preloader__texto span { color: var(--linha); }
+
+.preloader__pular {
+  position: absolute;
+  bottom: 2rem;
+  font: 400 0.68rem/1 var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--aco-fosco);
+  background: none;
+  border: 0;
+  border-bottom: 1px dashed currentColor;
+  padding: 0.35rem 0;
+  cursor: pointer;
+}
+.preloader__pular:hover { color: var(--cromo); }
+
+/* ==========================  cabeçalho  ================================== */
+
+.cabecalho {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: color-mix(in srgb, var(--breu) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(1.1);
+  border-bottom: 1px solid transparent;
+  transition: background var(--medio) linear, border-color var(--medio) linear,
+              transform 420ms var(--curva);
+}
+.cabecalho[data-rolado="sim"] {
+  background: color-mix(in srgb, var(--breu) 94%, transparent);
+  border-bottom-color: var(--borda);
+}
+.cabecalho[data-oculto="sim"] { transform: translateY(-100%); }
+
+/* linha de costura que mede o progresso da página */
+.cabecalho__costura {
+  height: 2px;
+  background-image: repeating-linear-gradient(90deg,
+    color-mix(in srgb, var(--cromo) 18%, transparent) 0 6px,
+    transparent 6px 14px);
+}
+.cabecalho__costura span {
+  display: block;
+  height: 100%;
+  width: var(--progresso, 0%);
+  background-image: repeating-linear-gradient(90deg, var(--linha) 0 6px, transparent 6px 14px);
+}
+
+.cabecalho__interno {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  height: var(--alt-cabecalho);
+  padding-inline: var(--gutter);
+}
+
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  color: var(--cromo);
+  margin-right: auto;
+}
+.marca__selo { width: 2.05rem; height: 2.05rem; color: var(--cromo); }
+.marca__selo--grande { width: 3.4rem; height: 3.4rem; }
+.marca:hover .marca__selo { color: var(--linha); }
+.marca__selo { transition: color var(--medio) linear; }
+
+.marca__texto { display: grid; line-height: 1; }
+.marca__texto strong {
+  font: 800 1.32rem/0.9 var(--f-display);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.marca__texto em {
+  font: 400 0.56rem/1 var(--f-mono);
+  font-style: normal;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--aco);
+  margin-top: 2px;
+}
+
+.nav ul {
+  display: flex;
+  gap: clamp(0.9rem, 2.2vw, 2rem);
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.nav a {
+  position: relative;
+  display: block;
+  padding: 0.4rem 0;
+  font: 400 0.74rem/1 var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--aco);
+  text-decoration: none;
+  transition: color var(--rapido) linear;
+}
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 1px;
+  background-image: repeating-linear-gradient(90deg, currentColor 0 4px, transparent 4px 9px);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 320ms var(--curva);
+}
+.nav a:hover { color: var(--cromo); }
+.nav a:hover::after { transform: scaleX(1); }
+.nav a[aria-current="true"] { color: var(--linha); }
+.nav a[aria-current="true"]::after { transform: scaleX(1); }
+
+.menu-alternar { display: none; }
+
+/* ==========================  menu mobile  ================================ */
+
+.menu-mobile {
+  position: fixed;
+  inset: var(--alt-cabecalho) 0 0;
+  z-index: 99;
+  background: var(--breu-fundo);
+  padding: clamp(1.5rem, 6vw, 3rem) var(--gutter);
+  overflow-y: auto;
+}
+.menu-mobile[hidden] { display: none; }
+.menu-mobile ul { list-style: none; margin: 0; padding: 0; }
+.menu-mobile li { border-bottom: 1px dashed var(--borda); }
+.menu-mobile a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.05rem 0;
+  font: 800 clamp(2rem, 11vw, 3rem)/0.95 var(--f-display);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--cromo);
+  /* cada item entra como um molde sendo desdobrado */
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(-0.4em);
+  transition: clip-path 460ms var(--curva), transform 460ms var(--curva), color var(--rapido) linear;
+}
+.menu-mobile[data-aberto="sim"] a { clip-path: inset(0 0 0 0); transform: none; }
+.menu-mobile li:nth-child(1) a { transition-delay: 40ms; }
+.menu-mobile li:nth-child(2) a { transition-delay: 90ms; }
+.menu-mobile li:nth-child(3) a { transition-delay: 140ms; }
+.menu-mobile li:nth-child(4) a { transition-delay: 190ms; }
+.menu-mobile li:nth-child(5) a { transition-delay: 240ms; }
+.menu-mobile li:nth-child(6) a { transition-delay: 290ms; }
+.menu-mobile li:nth-child(7) a { transition-delay: 340ms; }
+.menu-mobile a span {
+  font: 400 0.62rem/1 var(--f-mono);
+  letter-spacing: 0.16em;
+  color: var(--aco-fosco);
+  text-transform: uppercase;
+}
+.menu-mobile a:hover, .menu-mobile a:focus-visible { color: var(--linha); }
+
+@media (max-width: 860px) {
+  .nav, .cabecalho__cta { display: none; }
+
+  .menu-alternar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: none;
+    border: 0;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    color: var(--cromo);
+  }
+  .menu-alternar__rotulo {
+    font: 400 0.7rem/1 var(--f-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .menu-alternar__linhas { display: grid; gap: 4px; width: 1.5rem; }
+  .menu-alternar__linhas i {
+    display: block; height: 1px;
+    background: currentColor;
+    transition: transform 300ms var(--curva), opacity 200ms linear;
+  }
+  .menu-alternar[aria-expanded="true"] i:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+  .menu-alternar[aria-expanded="true"] i:nth-child(2) { opacity: 0; }
+  .menu-alternar[aria-expanded="true"] i:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+}
+
+/* ==========================  espinha de costura  ========================= */
+/* Uma linha de costura corre pela calha esquerda de toda a página e é
+   desenhada conforme o scroll. É a agulha da logo virando fio condutor. */
+
+.espinha {
+  position: fixed;
+  top: 0; bottom: 0;
+  left: calc(var(--gutter) * 0.42);
+  width: 12px;
+  z-index: 60;
+  pointer-events: none;
+}
+.espinha__svg { width: 12px; height: 100%; }
+.espinha__guia {
+  fill: none;
+  stroke: color-mix(in srgb, var(--cromo) 10%, transparent);
+  stroke-width: 1;
+  stroke-dasharray: 5 9;
+}
+.espinha__ponto {
+  fill: none;
+  stroke: var(--linha);
+  stroke-width: 1.6;
+  stroke-dasharray: 5 9;
+  stroke-dashoffset: 0;
+  /* o traçado cresce com o progresso da página */
+  clip-path: inset(0 0 calc(100% - var(--progresso-espinha, 0%)) 0);
+}
+.espinha__agulha {
+  position: absolute;
+  left: -6px;
+  top: var(--progresso-espinha, 0%);
+  width: 1.5rem; height: 1.5rem;
+  margin-top: -0.75rem;
+  color: var(--cromo-2);
+  opacity: 0.9;
+  transform: rotate(0deg);
+  transition: color var(--medio) linear;
+}
+@media (max-width: 1180px) { .espinha { display: none; } }
+
+/* ==========================  cascas de seção  ============================ */
+
+main { position: relative; z-index: 1; }
+
+section {
+  position: relative;
+  padding-block: clamp(4.5rem, 11vh, 9rem);
+  padding-inline: var(--gutter);
+}
+@media (min-width: 1181px) {
+  section { padding-left: calc(var(--gutter) + var(--espinha)); }
+}
+/* no celular o ritmo é mais curto: menos vazio entre uma seção e outra */
+@media (max-width: 620px) {
+  section { padding-block: clamp(3rem, 8vh, 4.5rem); }
+}
+
+.secao__cabeca { max-width: 62rem; margin-bottom: clamp(2.5rem, 6vw, 4.5rem); }
+.secao__cabeca h2 em {
+  font-style: normal;
+  color: var(--texto-fraco);
+}
+
+/* seções de papel de molde: o contraponto claro da mesa escura */
+.secao--papel {
+  background: var(--papel);
+  color: var(--tinta);
+  --texto: var(--tinta);
+  --texto-fraco: var(--tinta-2);
+  --borda: color-mix(in srgb, var(--tinta) 18%, transparent);
+  --borda-forte: color-mix(in srgb, var(--tinta) 34%, transparent);
+}
+.secao--papel .rotulo { color: color-mix(in srgb, var(--tinta) 62%, transparent); }
+.secao--papel h2, .secao--papel h3 { color: var(--tinta); }
+.secao--papel strong { color: var(--tinta); }
+/* papel milimetrado discreto, como folha de molde */
+.secao--papel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--papel-linha) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--papel-linha) 45%, transparent) 1px, transparent 1px);
+  background-size: 2.6rem 2.6rem;
+  opacity: 0.5;
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+}
+.secao--papel > * { position: relative; }
+
+/* faixa rolante (marquee lento e discreto) */
+.faixa-rolante {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  width: max-content;
+  font: 800 clamp(1.6rem, 4vw, 2.6rem)/1 var(--f-display);
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--cromo) 14%, transparent);
+  animation: correr 42s linear infinite;
+}
+.faixa-rolante i { color: var(--linha); font-style: normal; }
+.faixa-rolante[data-parado="sim"] { animation-play-state: paused; }
+@keyframes correr { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ==========================  rodapé  ===================================== */
+
+.rodape {
+  position: relative;
+  z-index: 1;
+  background: var(--breu-fundo);
+  border-top: 1px solid var(--borda);
+  padding: clamp(3rem, 8vw, 5.5rem) var(--gutter) 2rem;
+}
+@media (min-width: 1181px) { .rodape { padding-left: calc(var(--gutter) + var(--espinha)); } }
+
+.rodape__topo {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(16rem, 1.4fr) repeat(2, minmax(9rem, 1fr));
+  padding-bottom: 3rem;
+  border-bottom: 1px dashed var(--borda);
+}
+@media (max-width: 900px) {
+  .rodape__topo { grid-template-columns: repeat(2, minmax(9rem, 1fr)); }
+  .rodape__marca { grid-column: 1 / -1; }
+}
+
+.rodape__marca { display: grid; gap: 0.9rem; align-content: start; }
+.rodape__marca .marca__selo--grande { color: var(--cromo-2); }
+.rodape__assinatura { margin: 0; display: grid; gap: 0.2rem; }
+.rodape__assinatura strong {
+  font: 800 1.6rem/0.9 var(--f-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.rodape__assinatura span {
+  font: 400 0.62rem/1 var(--f-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--aco);
+}
+.rodape__frase {
+  font: 400 1rem/1.5 var(--f-corpo);
+  color: var(--aco);
+  max-width: 22ch;
+  margin: 0.4rem 0 0;
+}
+
+.rodape h2 {
+  font: 400 var(--t-rotulo)/1 var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--linha);
+  margin-bottom: 1.2rem;
+}
+.rodape ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55rem; }
+.rodape li, .rodape__bloco p { font-size: 0.92rem; color: var(--aco); }
+.rodape a { color: var(--cromo-2); text-decoration: none; transition: color var(--rapido) linear; }
+.rodape a:hover { color: var(--linha); }
+.rodape__bloco--contato p { margin: 0; line-height: 1.55; }
+.rodape__bloco--contato a { text-decoration: underline; }
+/* canais publicados a partir de config.js */
+.rodape ul.rodape__canais { margin-top: 0.9rem; }
+.rodape__canais a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.rodape__canais .icone-social { color: var(--linha); }
+.rodape__endereco {
+  margin: 0.9rem 0 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--aco-fosco);
+}
+
+.rodape__base {
+  display: grid;
+  gap: 1.2rem;
+  padding-top: 1.8rem;
+}
+.rodape__aviso {
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--aco-fosco);
+  max-width: 68ch;
+  margin: 0;
+}
+.rodape__aviso strong { color: var(--aco); }
+.rodape__aviso a { text-decoration: underline; }
+.rodape__creditos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.6rem;
+  margin: 0;
+  font: 400 0.68rem/1.4 var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--aco-fosco);
+}

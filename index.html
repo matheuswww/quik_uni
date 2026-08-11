@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quik Uniformes — uniformes express em 2 a 3 dias e estúdio 3D</title>
+<meta name="description" content="Uniformes e peças personalizadas, inclusive produção express para pequenas quantidades em 2 a 3 dias. Crie sua prévia no Estúdio 3D Quik.">
+<meta name="theme-color" content="#0b0b0c">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Quik Uniformes">
+<meta property="og:title" content="Quik Uniformes — produção express em 2 a 3 dias">
+<meta property="og:description" content="Pequenas quantidades de uniformes e peças personalizadas com produção express. Experimente sua ideia no Estúdio 3D Quik.">
+<meta property="og:image" content="assets/brand/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+
+<link rel="preload" href="assets/fonts/bigshoulders-latin-400-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-latin-400-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/sections.css">
+<link rel="stylesheet" href="assets/css/studio.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Quik Uniformes",
+  "description": "Uniformes e peças personalizadas para empresas, equipes, lojas, restaurantes, prestadores de serviço e eventos, inclusive produção express para pequenas quantidades em 2 a 3 dias.",
+  "image": "assets/brand/og-image.jpg",
+  "slogan": "Uniforme não é roupa. É a sua marca vestida.",
+  "makesOffer": {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Service",
+      "name": "Produção express de uniformes personalizados",
+      "description": "Produção de pequenas quantidades de uniformes e peças personalizadas em 2 a 3 dias."
+    }
+  }
+}
+</script>
+<script type="module" src="assets/js/main.js"></script>
+</head>
+
+<body data-preload="pendente">
+
+<!-- ===================== formas reutilizáveis (moldes) ===================== -->
+<svg class="formas" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <!-- molde da frente de uma camiseta, em coordenadas normalizadas -->
+    <clipPath id="molde-frente" clipPathUnits="objectBoundingBox">
+      <path d="M.165.075 L.395.012 C.47.115.53.115.605.012 L.835.075
+               C.925.155.905.235.885.305 L.905.975 L.095.975 L.115.305
+               C.095.235.075.155.165.075 Z"/>
+    </clipPath>
+    <!-- molde das costas: gola mais rasa -->
+    <clipPath id="molde-costas" clipPathUnits="objectBoundingBox">
+      <path d="M.165.075 L.40.02 C.47.075.53.075.60.02 L.835.075
+               C.925.155.905.235.885.305 L.905.975 L.095.975 L.115.305
+               C.095.235.075.155.165.075 Z"/>
+    </clipPath>
+    <!-- molde de manga -->
+    <clipPath id="molde-manga" clipPathUnits="objectBoundingBox">
+      <path d="M.06.30 C.30.02.70.02.94.30 L.86.96 L.14.96 Z"/>
+    </clipPath>
+    <!-- etiqueta -->
+    <clipPath id="molde-etiqueta" clipPathUnits="objectBoundingBox">
+      <path d="M0 0 L1 0 L1 1 L0 1 L.05.5 Z"/>
+    </clipPath>
+  </defs>
+</svg>
+
+<!-- ===================== preloader ===================== -->
+<div class="preloader" id="preloader" role="status" aria-live="polite" aria-label="Carregando a Quik Uniformes">
+  <div class="preloader__palco">
+    <svg class="preloader__marca" viewBox="0 0 360 340" aria-hidden="true">
+      <g class="preloader__pontos" fill="none" stroke="var(--cromo)" stroke-width="2.5"
+         stroke-linecap="round" stroke-dasharray="7 11"></g>
+      <g class="preloader__cheio" fill="var(--cromo)" fill-rule="evenodd"></g>
+    </svg>
+    <p class="preloader__texto"><span>costurando</span> a sua página</p>
+  </div>
+  <button type="button" class="preloader__pular" id="pular-intro">pular introdução</button>
+</div>
+
+<a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ===================== cabeçalho ===================== -->
+<header class="cabecalho" id="cabecalho">
+  <div class="cabecalho__costura" aria-hidden="true"><span id="progresso-costura"></span></div>
+  <div class="cabecalho__interno">
+    <a class="marca" href="#topo" aria-label="Quik Uniformes, início">
+      <span class="marca__selo" data-marca-qk aria-hidden="true"></span>
+      <span class="marca__texto">
+        <strong>Quik</strong>
+        <em>Uniformes</em>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav-principal" aria-label="Navegação principal">
+      <ul>
+        <li><a href="#express" data-nav>Express</a></li>
+        <li><a href="#bagagem" data-nav>Bagagem</a></li>
+        <li><a href="#para-quem" data-nav>Para quem</a></li>
+        <li><a href="#estudio" data-nav>Estúdio 3D</a></li>
+        <li><a href="#processo" data-nav>Processo</a></li>
+      </ul>
+    </nav>
+
+    <a class="botao botao--linha botao--compacto cabecalho__cta" href="#estudio" data-magnetico>
+      <span class="botao__texto">Criar meu uniforme</span>
+    </a>
+
+    <button class="menu-alternar" id="menu-alternar" type="button"
+            aria-expanded="false" aria-controls="menu-mobile">
+      <span class="menu-alternar__linhas" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="menu-alternar__rotulo">Menu</span>
+    </button>
+  </div>
+</header>
+
+<!-- menu mobile -->
+<div class="menu-mobile" id="menu-mobile" hidden>
+  <nav aria-label="Navegação">
+    <ul>
+      <li><a href="#express">Express<span aria-hidden="true">2 a 3 dias</span></a></li>
+      <li><a href="#bagagem">Bagagem<span aria-hidden="true">20 anos</span></a></li>
+      <li><a href="#para-quem">Para quem<span aria-hidden="true">públicos</span></a></li>
+      <li><a href="#estudio">Estúdio 3D<span aria-hidden="true">monte a sua</span></a></li>
+      <li><a href="#processo">Processo<span aria-hidden="true">4 etapas</span></a></li>
+      <li><a href="#contato">Contato<span aria-hidden="true">WhatsApp</span></a></li>
+    </ul>
+  </nav>
+</div>
+
+<!-- linha de costura que atravessa a página -->
+<div class="espinha" aria-hidden="true">
+  <svg class="espinha__svg" preserveAspectRatio="none" viewBox="0 0 12 1000">
+    <path class="espinha__guia" d="M6 0 V1000"/>
+    <path class="espinha__ponto" id="espinha-ponto" d="M6 0 V1000"/>
+  </svg>
+  <span class="espinha__agulha" id="espinha-agulha" data-marca-qk></span>
+</div>
+
+<main id="conteudo">
+<span id="topo" class="ancora"></span>
+
+<!-- ===================== hero ===================== -->
+<section class="hero" id="hero">
+  <div class="hero__grade">
+
+    <div class="hero__texto">
+      <p class="rotulo rotulo--linha">Uniformes e peças personalizadas</p>
+      <h1 class="hero__titulo">
+        <span class="revela"><span>Uniforme não é</span></span>
+        <span class="revela"><span>roupa. É a sua</span></span>
+        <span class="revela"><span class="cromado">marca vestida.</span></span>
+      </h1>
+      <p class="hero__linha-fina">
+        Uniformes e peças personalizadas para o seu time — do molde ao acabamento, com
+        <strong>20 anos de bagagem</strong> de quem acompanha a produção.
+        Para pequenas quantidades, também fazemos <strong>produção express em 2 a 3 dias</strong>.
+        Escolha a peça, jogue a sua logo e veja como fica antes de pedir.
+      </p>
+
+      <div class="hero__acoes">
+        <a class="botao botao--linha" href="#estudio" data-magnetico>
+          <span class="botao__texto">Experimentar em 3D</span>
+          <span class="botao__seta" aria-hidden="true">→</span>
+        </a>
+        <a class="botao botao--fantasma" href="#contato" data-magnetico>
+          <span class="botao__texto">Solicitar orçamento</span>
+        </a>
+      </div>
+
+      <dl class="ficha">
+        <div>
+          <dt>Estúdio 3D</dt>
+          <dd>bases visuais para experimentar a sua ideia</dd>
+        </div>
+        <div>
+          <dt>Personalização</dt>
+          <dd>logo, nome e número por área da peça</dd>
+        </div>
+        <div>
+          <dt>Produção express</dt>
+          <dd>pequenas quantidades em 2 a 3 dias</dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- molde do hero: foto dentro da peça + amostras de cor -->
+    <div class="hero__molde" id="hero-molde">
+      <div class="molde molde--hero" data-profundidade="0.6">
+        <span class="molde__marca-tecido" aria-hidden="true"></span>
+        <picture>
+          <source type="image/webp"
+                  srcset="assets/img/uniforme-avental-detalhe-480.webp 480w,
+                          assets/img/uniforme-avental-detalhe-900.webp 900w,
+                          assets/img/uniforme-avental-detalhe-1400.webp 1400w"
+                  sizes="(max-width: 900px) 90vw, 42vw">
+          <img src="assets/img/uniforme-avental-detalhe-900.webp"
+               width="900" height="1125" fetchpriority="high" decoding="async"
+               alt="Detalhe de avental de uniforme escuro vestido, com bolso e costura aparentes">
+        </picture>
+        <span class="molde__cor" id="molde-cor" aria-hidden="true"></span>
+        <span class="molde__brilho" aria-hidden="true"></span>
+      </div>
+
+      <svg class="molde-contorno" viewBox="0 0 100 125" aria-hidden="true" data-profundidade="1.1">
+        <path class="molde-contorno__margem" d="M16.5 9.4 L39.5 1.5 C47 14.4 53 14.4 60.5 1.5 L83.5 9.4
+              C92.5 19.4 90.5 29.4 88.5 38.1 L90.5 121.9 L9.5 121.9 L11.5 38.1
+              C9.5 29.4 7.5 19.4 16.5 9.4 Z"/>
+        <path class="molde-contorno__linha" d="M16.5 9.4 L39.5 1.5 C47 14.4 53 14.4 60.5 1.5 L83.5 9.4
+              C92.5 19.4 90.5 29.4 88.5 38.1 L90.5 121.9 L9.5 121.9 L11.5 38.1
+              C9.5 29.4 7.5 19.4 16.5 9.4 Z"/>
+        <g class="molde-contorno__marcas">
+          <path d="M50 46 V96"/><path d="M46.5 50 L50 45.5 L53.5 50"/><path d="M46.5 92 L50 96.5 L53.5 92"/>
+          <path d="M30 121.9 v-4"/><path d="M70 121.9 v-4"/>
+        </g>
+        <text class="molde-contorno__codigo" x="9.5" y="118">FRENTE · 01</text>
+      </svg>
+
+      <div class="amostras" role="group" aria-label="Ver o molde em outra cor">
+        <p class="amostras__rotulo" id="amostras-rotulo">Escolha um tom</p>
+        <div class="amostras__lista" data-amostras aria-describedby="amostras-rotulo"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__faixa" aria-hidden="true">
+    <div class="faixa-rolante" data-faixa>
+      <span>Camiseta</span><i>·</i><span>Polo</span><i>·</i><span>Manga longa</span><i>·</i>
+      <span>Nomes e números</span><i>·</i><span>Sua logo</span><i>·</i>
+      <span>Express em 2 a 3 dias</span><i>·</i>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== produção express ===================== -->
+<section class="express" id="express" aria-labelledby="express-titulo">
+  <div class="express__grade">
+    <div class="express__texto">
+      <p class="rotulo rotulo--linha">Produção express</p>
+      <h2 class="express__titulo" id="express-titulo">
+        Poucas peças. <em>Prazo curto.</em>
+      </h2>
+      <p>
+        Precisa de uma pequena quantidade com rapidez? A Quik também trabalha com produção
+        express de uniformes e peças personalizadas, com prazo de <strong>2 a 3 dias</strong>.
+      </p>
+      <p class="express__nota">
+        O prazo depende da peça, da arte e da disponibilidade no momento do pedido.
+        Chame no WhatsApp para confirmar o seu express.
+      </p>
+      <a class="botao botao--linha"
+         href="https://wa.me/5513991900224?text=Ol%C3%A1%21%20Quero%20consultar%20a%20produ%C3%A7%C3%A3o%20express%20de%20uniformes%20em%202%20a%203%20dias."
+         target="_blank" rel="noopener" data-magnetico data-icone-social="whatsapp">
+        <span class="botao__texto">Consultar produção express</span>
+        <span class="botao__seta" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="express__ficha-coluna">
+      <dl class="express__ficha">
+        <div class="express__prazo">
+          <dt>Prazo express</dt>
+          <dd><strong>02–03</strong><span>dias</span></dd>
+        </div>
+        <div>
+          <dt>Ideal para</dt>
+          <dd>Pequenas quantidades, reposições e demandas urgentes.</dd>
+        </div>
+        <div>
+          <dt>Confirmação</dt>
+          <dd>Consulte a peça, a arte e a disponibilidade diretamente pelo WhatsApp.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 20 anos ===================== -->
+<section class="bagagem secao--papel" id="bagagem" aria-labelledby="bagagem-titulo">
+  <div class="secao__cabeca">
+    <p class="rotulo">Bagagem</p>
+    <h2 class="bagagem__titulo" id="bagagem-titulo">
+      Vinte anos ensinam <em>onde o uniforme aperta.</em>
+    </h2>
+  </div>
+
+  <div class="bagagem__numero" data-numero>
+    <!-- os dígitos são a máscara: a foto do bordado aparece dentro do "20" -->
+    <div class="numero-mascara" aria-hidden="true">
+      <span class="numero-mascara__digitos">20</span>
+    </div>
+    <p class="numero-legenda">
+      <span>anos de mercado</span>
+      <small>experiência dos responsáveis pela Quik Uniformes</small>
+    </p>
+  </div>
+
+  <div class="bagagem__corpo">
+    <p class="bagagem__abertura">
+      Vinte anos não aparecem num certificado na parede. Aparecem na costura que continua
+      fechada depois da vigésima lavagem, no molde que veste gente de verdade e na cor que
+      sai igual à que você aprovou.
+    </p>
+
+    <dl class="lista-costurada">
+      <div>
+        <dt>Molde</dt>
+        <dd>A peça nasce do corte. Modelagem para quem trabalha o dia inteiro vestindo aquilo —
+          não para quem só posa na foto.</dd>
+      </div>
+      <div>
+        <dt>Acabamento</dt>
+        <dd>Barra, gola e costura conferidas peça por peça. É aí que uniforme barato entrega
+          o preço que custou.</dd>
+      </div>
+      <div>
+        <dt>Identidade</dt>
+        <dd>Sua logo tem tamanho, posição e cor certos. A gente ajusta o arquivo antes de aplicar,
+          e você aprova como vai ficar.</dd>
+      </div>
+    </dl>
+
+    <figure class="bagagem__foto">
+      <picture>
+        <source type="image/webp"
+                srcset="assets/img/costura-linha-preta-480.webp 480w,
+                        assets/img/costura-linha-preta-900.webp 900w"
+                sizes="(max-width: 900px) 60vw, 26vw">
+        <img src="assets/img/costura-linha-preta-480.webp" width="480" height="600"
+             loading="lazy" decoding="async"
+             alt="Calcador de máquina de costura com linha branca sobre tecido preto">
+      </picture>
+      <figcaption>Imagem ilustrativa</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===================== para quem ===================== -->
+<section class="publicos" id="para-quem" aria-labelledby="publicos-titulo">
+  <div class="publicos__trilho" data-trilho>
+    <div class="publicos__palco">
+      <div class="secao__cabeca secao__cabeca--linha">
+        <p class="rotulo">Para quem</p>
+        <h2 class="publicos__titulo" id="publicos-titulo">
+          Mesma peça, cinco conversas <em>diferentes.</em>
+        </h2>
+      </div>
+
+      <div class="publicos__grade">
+        <div class="publicos__abas" role="tablist" aria-label="Públicos atendidos"
+             aria-orientation="vertical" data-abas></div>
+
+        <div class="publicos__painel">
+          <div class="painel-publico" data-painel>
+            <div class="painel-publico__foto">
+              <span class="painel-publico__indice" data-indice aria-hidden="true">01</span>
+              <div class="painel-publico__imagens" data-imagens></div>
+            </div>
+            <div class="painel-publico__texto">
+              <h3 data-titulo>&nbsp;</h3>
+              <p data-descricao>&nbsp;</p>
+              <ul class="painel-publico__pecas" data-pecas></ul>
+              <a class="botao botao--fantasma botao--compacto" href="#estudio" data-magnetico>
+                <span class="botao__texto">Montar uma peça assim</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="publicos__dica" data-dica>
+        <span aria-hidden="true">↕</span> Role para percorrer os públicos — ou use as setas do teclado nas abas.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== estúdio 3D ===================== -->
+<section class="estudio" id="estudio" aria-labelledby="estudio-titulo">
+  <div class="estudio__entrada" data-entrada>
+    <p class="rotulo rotulo--linha">Estúdio 3D Quik</p>
+    <h2 class="estudio__titulo" id="estudio-titulo">
+      Monte a peça agora. <em>Sem esperar arte.</em>
+    </h2>
+    <p class="estudio__intro">
+      Escolha uma base, use uma cor pronta ou monte seu próprio tom em RGB, envie várias
+      artes e posicione cada uma na frente, nas costas ou nas mangas. Gire, aproxime e baixe
+      a prévia quando quiser. O estúdio é uma ferramenta opcional para explorar ideias.
+    </p>
+  </div>
+
+  <div class="estudio__palco" id="estudio-palco">
+    <!-- visor -->
+    <div class="visor" id="visor">
+      <div class="visor__moldura" aria-hidden="true">
+        <span class="visor__canto visor__canto--tl"></span>
+        <span class="visor__canto visor__canto--tr"></span>
+        <span class="visor__canto visor__canto--bl"></span>
+        <span class="visor__canto visor__canto--br"></span>
+      </div>
+
+      <div class="visor__tela" id="visor-tela"
+           tabindex="0" role="application"
+           aria-label="Prévia tridimensional da peça. Use as setas para girar, mais e menos para aproximar."
+           aria-describedby="visor-descricao"></div>
+
+      <p class="visor__descricao visao-oculta" id="visor-descricao" data-descricao-3d>
+        Prévia de uma camiseta na cor preto carvão, sem estampa aplicada.
+      </p>
+
+      <div class="visor__carregando" data-carregando hidden>
+        <span class="agulha-girando" aria-hidden="true"></span>
+        <p>montando a peça…</p>
+      </div>
+
+      <div class="visor__sem-3d" data-sem-3d hidden>
+        <p><strong>Seu navegador não abriu o 3D.</strong> Sem problema: o estúdio continua
+          funcionando em modo plano — cor, logo, posição, tamanho e captura.</p>
+      </div>
+
+      <div class="visor__barra">
+        <div class="visor__giro" role="group" aria-label="Câmera">
+          <button type="button" class="tecla" data-camera="girar-esq" aria-label="Girar para a esquerda"><span aria-hidden="true">↺</span></button>
+          <button type="button" class="tecla" data-camera="frente">Frente</button>
+          <button type="button" class="tecla" data-camera="costas">Costas</button>
+          <button type="button" class="tecla" data-camera="girar-dir" aria-label="Girar para a direita"><span aria-hidden="true">↻</span></button>
+        </div>
+        <div class="visor__zoom" role="group" aria-label="Zoom">
+          <button type="button" class="tecla" data-camera="menos" aria-label="Afastar a câmera"><span aria-hidden="true">−</span></button>
+          <button type="button" class="tecla" data-camera="mais" aria-label="Aproximar a câmera"><span aria-hidden="true">+</span></button>
+          <button type="button" class="tecla" data-camera="reiniciar">Reiniciar vista</button>
+        </div>
+      </div>
+
+      <p class="visor__dica" data-dica-visor>
+        Arraste para girar · arraste sobre a estampa para movê-la
+      </p>
+    </div>
+
+    <!-- painel de controles -->
+    <div class="painel" id="painel-estudio">
+      <button class="painel__puxador" type="button" id="painel-puxador"
+              aria-expanded="false" aria-controls="painel-conteudo">
+        <span class="painel__puxador-linha" aria-hidden="true"></span>
+        <span>Personalizar</span>
+      </button>
+
+      <div class="painel__conteudo" id="painel-conteudo">
+
+        <fieldset class="grupo">
+          <legend><span class="grupo__num" aria-hidden="true">01</span> Peça</legend>
+          <div class="pecas" data-pecas-lista role="radiogroup" aria-label="Tipo de peça"></div>
+          <p class="grupo__nota" data-nota-peca></p>
+        </fieldset>
+
+        <fieldset class="grupo">
+          <legend><span class="grupo__num" aria-hidden="true">02</span> Cor da peça</legend>
+          <div class="cores" data-cores-lista role="radiogroup" aria-label="Cor da peça"></div>
+          <div class="cor-livre" data-editor-cor>
+            <div class="cor-livre__cabeca">
+              <label for="cor-personalizada">Cor personalizada</label>
+              <input type="color" id="cor-personalizada" value="#1b1d21" data-cor-livre>
+              <output data-cor-nome>Preto carvão</output>
+            </div>
+            <div class="rgb" role="group" aria-label="Valores RGB da cor personalizada">
+              <label>R <input type="number" min="0" max="255" value="27" inputmode="numeric" data-rgb="r"></label>
+              <label>G <input type="number" min="0" max="255" value="29" inputmode="numeric" data-rgb="g"></label>
+              <label>B <input type="number" min="0" max="255" value="33" inputmode="numeric" data-rgb="b"></label>
+            </div>
+            <label class="cor-opacidade">
+              <span>Opacidade da cor <span data-cor-alpha>100%</span></span>
+              <input type="range" min="0" max="100" value="100" step="1" data-cor-opacidade>
+            </label>
+          </div>
+          <p class="grupo__nota">A opacidade mistura o tom escolhido com uma base clara de tecido.</p>
+        </fieldset>
+
+        <fieldset class="grupo">
+          <legend><span class="grupo__num" aria-hidden="true">03</span> Sua logo ou estampa</legend>
+
+          <div class="envio" data-envio>
+            <input type="file" id="arquivo-estampa" accept="image/png,image/jpeg,image/svg+xml"
+                   data-arquivo class="visao-oculta" multiple>
+            <label class="envio__area" for="arquivo-estampa" data-solta>
+              <span class="envio__icone" aria-hidden="true"></span>
+              <span class="envio__texto"><strong>Adicionar artes</strong>
+                <small>PNG, JPG ou SVG · até 8 MB cada · selecione várias se quiser</small></span>
+            </label>
+            <p class="envio__erro" role="alert" data-erro-envio hidden></p>
+          </div>
+
+          <div class="areas" data-areas>
+            <p class="areas__rotulo" id="areas-rotulo">Onde aplicar</p>
+            <div class="areas__lista" role="radiogroup" aria-labelledby="areas-rotulo" data-areas-lista></div>
+          </div>
+
+          <div class="camadas" data-camadas hidden>
+            <p class="areas__rotulo" id="camadas-rotulo">Artes nesta área</p>
+            <div class="camadas__lista" role="group" aria-labelledby="camadas-rotulo" data-camadas-lista></div>
+          </div>
+
+          <div class="prancheta" data-prancheta hidden>
+            <div class="prancheta__cabeca">
+              <p>Prancheta <em data-area-nome>frente</em></p>
+            </div>
+            <div class="prancheta__palco" data-prancheta-palco
+                 tabindex="0" role="application"
+                 aria-label="Posicione a estampa: arraste, ou use as setas do teclado para mover">
+              <canvas data-prancheta-canvas width="300" height="375" aria-hidden="true"></canvas>
+              <div class="prancheta__caixa" data-caixa hidden>
+                <span class="prancheta__alca" data-alca aria-hidden="true"></span>
+              </div>
+            </div>
+
+            <div class="controles">
+              <label>
+                <span>Tamanho <span data-saida="escala">40%</span></span>
+                <input type="range" min="1" max="100" value="40" step="1" data-ctrl="escala">
+              </label>
+              <label>
+                <span>Rotação <span data-saida="rotacao">0°</span></span>
+                <input type="range" min="-180" max="180" value="0" step="1" data-ctrl="rotacao">
+              </label>
+              <div class="controles__pares">
+                <label>
+                  <span>Horizontal <span data-saida="x">centro</span></span>
+                  <input type="range" min="0" max="100" value="50" step="1" data-ctrl="x">
+                </label>
+                <label>
+                  <span>Vertical <span data-saida="y">50%</span></span>
+                  <input type="range" min="0" max="100" value="50" step="1" data-ctrl="y">
+                </label>
+              </div>
+              <button type="button" class="mini" data-centralizar>Centralizar na área</button>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="painel__acoes">
+          <button type="button" class="botao botao--linha botao--largo" data-captura data-magnetico>
+            <span class="botao__texto">Baixar 4 vistas da peça</span>
+          </button>
+          <button type="button" class="botao botao--fantasma botao--largo painel__reset" data-reset-estudio>
+            <span class="botao__texto">Resetar estúdio</span>
+          </button>
+          <p class="painel__salvo" data-estado-salvo aria-live="polite">
+            Salvo automaticamente neste navegador.
+          </p>
+        </div>
+
+        <p class="painel__aviso">
+          A prévia é uma aproximação para decidir cor, posição e tamanho. Cores de tela variam
+          conforme o monitor e não substituem a prova física.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <p class="estudio__estado visao-oculta" role="status" aria-live="polite" data-estado-estudio></p>
+</section>
+
+<!-- ===================== processo ===================== -->
+<section class="processo secao--papel" id="processo" aria-labelledby="processo-titulo">
+  <div class="secao__cabeca">
+    <p class="rotulo">Processo</p>
+    <h2 class="processo__titulo" id="processo-titulo">O que você pode testar <em>no estúdio.</em></h2>
+    <p class="processo__intro">Use só o que ajudar na sua ideia. Nada aqui é obrigatório para entrar em contato ou solicitar um orçamento.</p>
+  </div>
+
+  <div class="processo__trilho" data-processo>
+    <div class="processo__visual">
+      <div class="processo__peca" data-peca-processo>
+        <svg viewBox="0 0 200 200" role="img" aria-labelledby="processo-svg-titulo">
+          <title id="processo-svg-titulo">Ilustração das possibilidades do Estúdio 3D</title>
+          <g class="pp-molde">
+            <path class="pp-corpo" d="M66 26 L86 13 C94 30 106 30 114 13 L134 26
+                 C152 37 149 52 146 64 L150 172 L50 172 L54 64 C51 52 48 37 66 26 Z"/>
+            <path class="pp-manga pp-manga--esq" d="M66 26 C48 37 51 52 54 64 L28 76 L17 44 Z"/>
+            <path class="pp-manga pp-manga--dir" d="M134 26 C152 37 149 52 146 64 L172 76 L183 44 Z"/>
+          </g>
+          <g class="pp-costura">
+            <path d="M54 64 L50 172"/><path d="M146 64 L150 172"/><path d="M50 172 L150 172"/>
+          </g>
+          <rect class="pp-estampa" x="76" y="72" width="48" height="48" rx="1"/>
+          <g class="pp-confere">
+            <path d="M80 96 l10 10 l20 -22"/>
+          </g>
+          <g class="pp-etiqueta">
+            <rect x="88" y="34" width="24" height="10" rx="1"/>
+            <path d="M92 39 h16"/>
+          </g>
+        </svg>
+      </div>
+      <p class="processo__contador" aria-hidden="true"><span data-contador>01</span><i>/04</i></p>
+    </div>
+
+    <ol class="processo__etapas" data-etapas>
+      <li data-etapa="1">
+        <h3><span aria-hidden="true">01</span> Experimente uma base</h3>
+        <p>Troque o modelo e compare silhuetas. As opções do estúdio são pontos de partida,
+          não um catálogo fechado do que a Quik produz.</p>
+      </li>
+      <li data-etapa="2">
+        <h3><span aria-hidden="true">02</span> Teste as cores</h3>
+        <p>Comece por um tom da paleta ou crie outro com valores RGB e opacidade. A tela serve
+          para comparar caminhos; a cor final sempre é conferida na produção.</p>
+      </li>
+      <li data-etapa="3">
+        <h3><span aria-hidden="true">03</span> Combine suas artes</h3>
+        <p>Adicione várias imagens na mesma área ou distribua entre frente, costas e mangas.
+          Cada arte pode ser movida, girada e redimensionada separadamente.</p>
+      </li>
+      <li data-etapa="4">
+        <h3><span aria-hidden="true">04</span> Veja e salve a ideia</h3>
+        <p>Gire a peça, confira outros lados, aproxime os detalhes e baixe uma imagem da prévia
+          se quiser guardar ou compartilhar a referência.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================== etiqueta / atendimento ===================== -->
+<section class="cuidado" id="cuidado" aria-labelledby="cuidado-titulo">
+  <div class="cuidado__grade">
+    <div class="cuidado__texto">
+      <p class="rotulo">Antes de pedir</p>
+      <h2 class="cuidado__titulo" id="cuidado-titulo">
+        O que está costurado <em>na etiqueta.</em>
+      </h2>
+      <p>
+        Uniforme é peça que alguém veste todo dia, na frente do cliente. Por isso a conversa
+        começa pela identidade e termina no acabamento — e não no contrário.
+      </p>
+      <p>
+        Se a sua arte não estiver pronta, dá para começar com o que você tem: um cartão, uma
+        foto da fachada, um arquivo antigo. A gente fecha a arte para aplicar.
+      </p>
+      <a class="botao botao--linha" href="#contato" data-magnetico>
+        <span class="botao__texto">Falar com a Quik</span>
+        <span class="botao__seta" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <!-- etiqueta de composição: o artefato da seção -->
+    <div class="etiqueta" data-etiqueta>
+      <div class="etiqueta__furo" aria-hidden="true"></div>
+      <p class="etiqueta__marca"><span data-marca-qk aria-hidden="true"></span> QUIK UNIFORMES</p>
+      <dl class="etiqueta__linhas">
+        <div>
+          <dt>Composição</dt>
+          <dd>20 anos de mercado · identidade bem aplicada · acabamento acompanhado de perto</dd>
+        </div>
+        <div>
+          <dt>Modo de usar</dt>
+          <dd>Traga a arte em PNG, JPG ou SVG. Sem arte fechada, a gente ajusta o que você tem.</dd>
+        </div>
+        <div>
+          <dt>Serve para</dt>
+          <dd>Empresas, equipes, lojas, restaurantes, serviços, eventos e projetos próprios</dd>
+        </div>
+        <div>
+          <dt>Atendimento</dt>
+          <dd>Conversa direta para entender a peça, a identidade e o acabamento que você procura</dd>
+        </div>
+      </dl>
+      <div class="etiqueta__simbolos" aria-hidden="true">
+        <span title="molde">▢</span><span title="costura">⌇</span><span title="cor">◈</span>
+        <span title="aplicação">✳</span><span title="acabamento">◉</span>
+      </div>
+      <p class="etiqueta__rodape">Feito para vestir a sua marca</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== contato ===================== -->
+<section class="contato" id="contato" aria-labelledby="contato-titulo">
+  <div class="contato__grade">
+    <div class="contato__chamada">
+      <p class="rotulo rotulo--linha">Contato direto</p>
+      <h2 class="contato__titulo" id="contato-titulo">
+        Vamos vestir <span class="cromado">a sua marca?</span>
+      </h2>
+      <p>Conte o que procura diretamente pelo WhatsApp. Se tiver uma prévia,
+        ela pode ajudar na conversa. Para pequenas quantidades, pergunte pela produção
+        express em 2 a 3 dias.</p>
+      <p class="contato__numero"><span>WhatsApp</span><strong>(13) 99190-0224</strong></p>
+    </div>
+    <div class="contato__acoes">
+      <a class="botao botao--linha botao--largo"
+         href="https://wa.me/5513991900224?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20uniformes."
+         target="_blank" rel="noopener" data-magnetico data-icone-social="whatsapp">
+        <span class="botao__texto">Solicitar orçamento</span><span class="botao__seta" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===================== rodapé ===================== -->
+<footer class="rodape" id="rodape">
+  <div class="rodape__topo">
+    <div class="rodape__marca">
+      <span class="marca__selo marca__selo--grande" data-marca-qk aria-hidden="true"></span>
+      <p class="rodape__assinatura"><strong>Quik Uniformes</strong>
+        <span>Uniformes e peças personalizadas</span></p>
+      <p class="rodape__frase">Uniforme não é roupa. É a sua marca vestida.</p>
+    </div>
+
+    <nav class="rodape__nav" aria-label="Seções">
+      <h2>Navegar</h2>
+      <ul>
+        <li><a href="#express">Produção express</a></li>
+        <li><a href="#bagagem">Bagagem</a></li>
+        <li><a href="#para-quem">Para quem</a></li>
+        <li><a href="#estudio">Estúdio 3D Quik</a></li>
+        <li><a href="#processo">Processo</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <div class="rodape__bloco rodape__bloco--contato" data-canais>
+      <h2>Contato</h2>
+      <p data-canais-vazio>WhatsApp: (13) 99190-0224.</p>
+    </div>
+  </div>
+
+  <div class="rodape__base">
+    <p class="rodape__aviso">
+      As imagens são <strong>meramente ilustrativas</strong> e não representam clientes ou
+      trabalhos realizados pela Quik Uniformes.
+    </p>
+    <p class="rodape__creditos">
+      <span>© <span data-ano>2026</span> Quik Uniformes</span>
+      <span>Peças do estúdio geradas em 3D no seu navegador</span>
+    </p>
+  </div>
+</footer>
+
+<!-- confirmação de reset do estúdio -->
+<dialog class="confirmacao-reset" data-dialog-reset aria-labelledby="reset-titulo" aria-describedby="reset-texto">
+  <form method="dialog" class="confirmacao-reset__caixa">
+    <p class="rotulo">Estúdio 3D</p>
+    <h2 id="reset-titulo">Resetar todo o projeto?</h2>
+    <p id="reset-texto">
+      A peça, a cor e todas as artes salvas neste navegador serão apagadas. Essa ação não pode ser desfeita.
+    </p>
+    <div class="confirmacao-reset__acoes">
+      <button type="submit" class="botao botao--fantasma" value="cancelar">Cancelar</button>
+      <button type="submit" class="botao botao--linha" value="resetar">Sim, resetar</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

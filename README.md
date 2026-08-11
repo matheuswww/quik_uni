@@ -1,25 +1,33 @@
 # Quik Uniformes — site
 
 Página única, interativa, com um configurador 3D de peças que funciona de
-verdade no navegador. **HTML, CSS e JavaScript puros** — sem framework, sem
-etapa de build, sem dependência remota. A única biblioteca é o three.js, que
-está no repositório.
+verdade no navegador. **HTML, CSS e JavaScript puros**, sem framework e sem
+dependência remota em produção. O build usa Vite; a única biblioteca carregada
+no navegador é o three.js, que está no repositório.
 
 ---
 
 ## 1. Rodar localmente
 
-Os módulos ES e o `fetch` do monograma exigem um servidor HTTP — abrir o
-`index.html` por `file://` não funciona.
+Instale as dependências de desenvolvimento e inicie o servidor do Vite:
 
 ```bash
 cd quik_uni
-python3 -m http.server 8000
-# abre http://localhost:8000
+npm install
+npm run dev
 ```
 
-Qualquer servidor estático serve (`npx serve`, `php -S`, Live Server do VS Code).
-Para publicar, é só subir a pasta inteira: não há nada para compilar.
+Para gerar e conferir a versão de produção:
+
+```bash
+npm run build
+npm run preview
+```
+
+O build gera `dist/` com HTML, CSS e JavaScript minificados, nomes com hash para
+cache e chunks separados para o 3D e o carregador GLTF. Publique apenas o
+conteúdo de `dist/`. Os módulos ES exigem HTTP; abrir o `index.html` diretamente
+por `file://` não funciona.
 
 ## 2. Preencher os dados da empresa
 
@@ -29,14 +37,14 @@ Para publicar, é só subir a pasta inteira: não há nada para compilar.
 contato: {
   whatsapp: "5513991900224",
   email: null,
-  telefoneVisivel: "(13) 99190-0224",
+  whatsappVisivel: "(13) 99190-0224",
   endereco: null,
   instagram: null,       // "@quikuniformes"
 }
 ```
 
 Enquanto um campo estiver `null`, **o canal simplesmente não aparece** no
-rodapé. O contato principal do site é direto por telefone e WhatsApp; não há
+rodapé. O contato principal do site é direto pelo WhatsApp; não há
 formulário intermediário.
 
 O mesmo arquivo guarda dois comportamentos (`opcoes.introUmaVezPorSessao`,
@@ -49,10 +57,13 @@ O mesmo arquivo guarda dois comportamentos (`opcoes.introUmaVezPorSessao`,
 
 ```
 index.html                  documento único, semântico
+package.json                scripts e dependências do build
+vite.config.js              minificação, chunks e cópia de assets dinâmicos
+dist/                       saída de produção (gerada, não versionada)
 assets/
   css/  base.css            tokens, tipografia, botões, reveals, reduced-motion
         layout.css          preloader, cabeçalho, espinha, cascas de seção, rodapé
-        sections.css        hero, bagagem, públicos, galeria, processo, contato
+        sections.css        hero, bagagem, públicos, processo, contato
         studio.css          Estúdio 3D (visor, painel, prancheta)
         fonts.css           @font-face locais
   js/   config.js           >>> dados da empresa (editar) <<<
@@ -65,7 +76,6 @@ assets/
           hero.js           amostras de tom, paralaxe do molde, faixa rolante
           bagagem.js        a foto que desliza dentro do "20"
           publicos.js       abas de categoria sincronizadas com o scroll
-          galeria.js        deslocamento leve + lightbox
           processo.js       máquina de estados das 4 etapas
           estudio.js        interface do estúdio (peça, cor, arquivo, prancheta)
           estudio3d.js      motor 3D (three.js) — carregado sob demanda
@@ -166,8 +176,8 @@ mantém o `SOURCES.md` correto.
 - `prefers-reduced-motion` remove paralaxe, movimento por cursor e a montagem
   animada da peça; a introdução é ignorada e todo o conteúdo aparece de imediato.
   Nenhuma informação existe apenas dentro de uma animação.
-- As categorias são um `tablist` real; a galeria abre num `<dialog>`; o visor 3D
-  tem `role="application"`, descrição em texto que acompanha o estado da peça e
+- As categorias são um `tablist` real; o visor 3D tem `role="application"`,
+  descrição em texto que acompanha o estado da peça e
   região de status para avisar cada mudança.
 - Foco visível em tudo, menu do celular com foco preso enquanto aberto e
   fechamento por `Esc`.
