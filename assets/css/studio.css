@@ -663,3 +663,32 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(0.94); }
 @media (max-width: 430px) {
   .confirmacao-reset__acoes { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================================
+   Estúdio como página própria (estudio.html)
+   Sem hero acima, a seção precisa abrir espaço para o cabeçalho fixo e o
+   título vira o h1 do documento.
+   ========================================================================== */
+
+.estudio--pagina { padding-top: calc(var(--alt-cabecalho) + clamp(1.6rem, 5vh, 3.4rem)); }
+.estudio--pagina .estudio__titulo { font-size: clamp(2.4rem, 5.6vw, 5rem); }
+
+/* volta para o site: discreto, mas sempre à mão */
+.voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.4rem;
+  font: 400 0.7rem/1 var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--aco);
+  text-decoration: none;
+  transition: color var(--rapido) linear;
+}
+.voltar span { color: var(--linha); transition: transform var(--medio) var(--curva); }
+.voltar:hover { color: var(--cromo); }
+.voltar:hover span { transform: translateX(-4px); }
+
+.nav a[aria-current="page"] { color: var(--linha); }
+.nav a[aria-current="page"]::after { transform: scaleX(1); }

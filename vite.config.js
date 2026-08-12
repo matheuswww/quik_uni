@@ -76,6 +76,11 @@ export default defineConfig({
     // O three.js fica isolado e só é baixado ao entrar no estúdio 3D.
     chunkSizeWarningLimit: 550,
     rollupOptions: {
+      // duas páginas: o site e o Estúdio 3D, que vive num documento próprio
+      input: {
+        index: path.resolve(RAIZ, "index.html"),
+        estudio: path.resolve(RAIZ, "estudio.html"),
+      },
       output: {
         entryFileNames: "assets/js/[name]-[hash].js",
         chunkFileNames: "assets/js/[name]-[hash].js",

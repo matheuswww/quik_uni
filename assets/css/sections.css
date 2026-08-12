@@ -881,3 +881,173 @@
 }
 .contato__acoes p { margin: 0.3rem 0 0; text-align: center; color: var(--aco); font-size: 0.82rem; }
 .contato__acoes p a { color: var(--cromo-2); }
+
+/* ====================== chamada do Estúdio 3D (home) ===================== */
+/* O estúdio virou página própria. Aqui fica só o convite: texto à esquerda e
+   um cartão-porta à direita — a peça sob a luz, esperando ser aberta. */
+
+.chamada-estudio {
+  background:
+    radial-gradient(62% 46% at 78% 22%, color-mix(in srgb, var(--linha) 9%, transparent), transparent 70%),
+    radial-gradient(80% 70% at 50% 60%, #131419, var(--breu-fundo) 80%);
+  border-top: 1px solid var(--borda);
+  border-bottom: 1px solid var(--borda);
+  overflow: hidden;
+}
+.chamada-estudio__grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 26rem);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  max-width: var(--max);
+}
+@media (max-width: 900px) {
+  .chamada-estudio__grade { grid-template-columns: minmax(0, 1fr); }
+}
+
+.chamada-estudio__titulo {
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.chamada-estudio__titulo em { color: var(--linha); font-style: normal; }
+.chamada-estudio__intro { color: var(--cromo-2); font-size: var(--t-corpo-g); max-width: 50ch; }
+
+.chamada-estudio__itens {
+  list-style: none;
+  margin: 1.6rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 1.4rem;
+  max-width: 40rem;
+}
+@media (max-width: 520px) { .chamada-estudio__itens { grid-template-columns: 1fr; } }
+.chamada-estudio__itens li {
+  position: relative;
+  padding-left: 1.3rem;
+  font-size: 0.92rem;
+  color: var(--cromo-2);
+  border-bottom: 1px dashed var(--borda);
+  padding-bottom: 0.5rem;
+}
+.chamada-estudio__itens li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 0.55rem;
+  height: 1px;
+  background: var(--linha);
+}
+/* ------------------------ o cartão que abre o estúdio -------------------- */
+
+.cartao-estudio {
+  display: grid;
+  gap: 0;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--borda-forte);
+  border-radius: var(--raio);
+  background: linear-gradient(180deg, #17181d, #0d0e11);
+  overflow: hidden;
+  transition: border-color var(--medio) var(--curva), transform var(--medio) var(--curva),
+              box-shadow var(--medio) var(--curva);
+}
+.cartao-estudio:hover,
+.cartao-estudio:focus-visible {
+  border-color: var(--linha);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 46px -22px rgb(0 0 0 / 0.9);
+}
+
+.cartao-estudio__palco {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: clamp(1.6rem, 4vw, 2.6rem);
+  background:
+    radial-gradient(46% 38% at 50% 30%, #262930, transparent 72%),
+    repeating-linear-gradient(0deg, transparent 0 23px, color-mix(in srgb, var(--cromo) 5%, transparent) 23px 24px),
+    repeating-linear-gradient(90deg, transparent 0 23px, color-mix(in srgb, var(--cromo) 5%, transparent) 23px 24px);
+}
+.cartao-estudio__canto {
+  position: absolute;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 1px solid var(--aco-fosco);
+  opacity: 0.7;
+}
+.cartao-estudio__canto--tl { top: 0.7rem; left: 0.7rem; border-right: 0; border-bottom: 0; }
+.cartao-estudio__canto--tr { top: 0.7rem; right: 0.7rem; border-left: 0; border-bottom: 0; }
+.cartao-estudio__canto--bl { bottom: 0.7rem; left: 0.7rem; border-right: 0; border-top: 0; }
+.cartao-estudio__canto--br { bottom: 0.7rem; right: 0.7rem; border-left: 0; border-top: 0; }
+.cartao-estudio:hover .cartao-estudio__canto { border-color: var(--linha); opacity: 1; }
+
+.cartao-estudio__peca {
+  width: min(100%, 15rem);
+  height: auto;
+  overflow: visible;
+  transform: perspective(600px) rotateY(-12deg);
+  transition: transform 900ms var(--curva);
+}
+.cartao-estudio:hover .cartao-estudio__peca,
+.cartao-estudio:focus-visible .cartao-estudio__peca {
+  transform: perspective(600px) rotateY(14deg);
+}
+.ce-corpo { fill: var(--grafite-3); stroke: var(--cromo-2); stroke-width: 1.4; }
+.ce-manga { fill: var(--grafite-2); stroke: var(--cromo-2); stroke-width: 1.4; }
+.ce-costura { fill: none; stroke: var(--aco-fosco); stroke-width: 1; stroke-dasharray: 4 5; }
+.ce-estampa {
+  fill: none;
+  stroke: var(--linha);
+  stroke-width: 1.2;
+  stroke-dasharray: 5 5;
+  transition: fill var(--medio) linear;
+}
+.cartao-estudio:hover .ce-estampa { fill: color-mix(in srgb, var(--linha) 18%, transparent); }
+
+/* a sombra no chão do cartão: dá o peso da peça */
+.cartao-estudio__eixo {
+  position: absolute;
+  bottom: 1.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 58%;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(0 0 0 / 0.75), transparent);
+}
+
+.cartao-estudio__rodape {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.1rem clamp(1.1rem, 3vw, 1.6rem) 1.3rem;
+  border-top: 1px dashed var(--borda-forte);
+  background: color-mix(in srgb, var(--grafite) 70%, transparent);
+}
+.cartao-estudio__rotulo {
+  font: 400 var(--t-rotulo)/1 var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--linha);
+}
+.cartao-estudio__acao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font: 800 clamp(1.25rem, 2.4vw, 1.7rem)/1 var(--f-display);
+  text-transform: uppercase;
+  color: var(--cromo);
+}
+.cartao-estudio__acao i {
+  font-style: normal;
+  transition: transform var(--medio) var(--curva);
+}
+.cartao-estudio:hover .cartao-estudio__acao i,
+.cartao-estudio:focus-visible .cartao-estudio__acao i { transform: translateX(6px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cartao-estudio:hover, .cartao-estudio:focus-visible { transform: none; }
+  .cartao-estudio__peca { transform: none !important; }
+}

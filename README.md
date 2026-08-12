@@ -1,9 +1,10 @@
 # Quik Uniformes — site
 
-Página única, interativa, com um configurador 3D de peças que funciona de
-verdade no navegador. **HTML, CSS e JavaScript puros**, sem framework e sem
-dependência remota em produção. O build usa Vite; a única biblioteca carregada
-no navegador é o three.js, que está no repositório.
+Duas páginas: o site (`index.html`) e o **Estúdio 3D** (`estudio.html`), um
+configurador de peças que funciona de verdade no navegador. **HTML, CSS e
+JavaScript puros**, sem framework e sem dependência remota em produção. O build
+usa Vite; a única biblioteca carregada no navegador é o three.js, que está no
+repositório — e ela só é baixada por quem abre o estúdio.
 
 ---
 
@@ -56,14 +57,16 @@ O mesmo arquivo guarda dois comportamentos (`opcoes.introUmaVezPorSessao`,
 ## 3. Estrutura
 
 ```
-index.html                  documento único, semântico
+index.html                  o site: hero, express, bagagem, públicos, contato
+estudio.html                o Estúdio 3D + "o que testar" + contato
 package.json                scripts e dependências do build
-vite.config.js              minificação, chunks e cópia de assets dinâmicos
+vite.config.js              duas entradas, minificação, chunks e assets dinâmicos
 dist/                       saída de produção (gerada, não versionada)
 assets/
   css/  base.css            tokens, tipografia, botões, reveals, reduced-motion
         layout.css          preloader, cabeçalho, espinha, cascas de seção, rodapé
-        sections.css        hero, bagagem, públicos, processo, contato
+        sections.css        hero, bagagem, públicos, chamada do estúdio,
+                            processo, contato
         studio.css          Estúdio 3D (visor, painel, prancheta)
         fonts.css           @font-face locais
   js/   config.js           >>> dados da empresa (editar) <<<
@@ -100,6 +103,8 @@ malha, acabamentos da modelagem e várias artes posicionadas. Esse mesmo canvas 
 textura do modelo 3D e é o que o modo plano desenha. Mudou a cor, mudou o
 canvas, mudou tudo o que está na tela.
 
+- O estúdio mora em `estudio.html`. A home só carrega o convite (a seção
+  `#estudio-chamada`), então quem nunca abre o estúdio nunca baixa o 3D.
 - O motor só é carregado quando a seção chega perto da tela (`import()`
   dinâmico). Antes disso o three.js não é baixado.
 - Sem WebGL, entra `estudio2d.js`: mesma interface, mesmos painéis, um painel

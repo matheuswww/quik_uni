@@ -12,10 +12,16 @@ export function ligarCabecalho() {
   const cta = document.querySelector(".cabecalho__cta");
   const espinha = document.querySelector(".espinha");
   const agulha = document.getElementById("espinha-agulha");
-  const links = Array.from(document.querySelectorAll("[data-nav]"));
-  const secoes = links
-    .map((a) => document.querySelector(a.getAttribute("href")))
-    .filter(Boolean);
+  // só os links que apontam para uma seção existente nesta página entram no
+  // rastreio — com o estúdio em página própria, há links entre documentos
+  const pares = Array.from(document.querySelectorAll("[data-nav]"))
+    .map((link) => {
+      const href = link.getAttribute("href") || "";
+      return { link, secao: /^#.+/.test(href) ? document.querySelector(href) : null };
+    })
+    .filter((par) => par.secao);
+  const links = pares.map((par) => par.link);
+  const secoes = pares.map((par) => par.secao);
 
   let ultimoY = window.scrollY;
   let atual = -1;
@@ -54,14 +60,14 @@ export function ligarCabecalho() {
       });
     }
 
-    // o botão do cabeçalho aponta para o passo seguinte
-    if (cta) {
-      const estudio = document.getElementById("estudio");
-      const passouEstudio = estudio &&
-        estudio.getBoundingClientRect().bottom < alturaTela * 0.5;
-      const alvo = passouEstudio ? "#contato" : "#estudio";
-      const texto = passouEstudio ? "Solicitar orçamento" : "Criar meu uniforme";
-      if (cta.getAttribute("href") !== alvo) {
+    // o botão do cabeçalho aponta para o passo seguinte: cada página diz, nos
+    // data-atributos do próprio botão, qual é o marco e para onde ir depois dele
+    if (cta?.dataset.marco) {
+      const marco = document.querySelector(cta.dataset.marco);
+      const passou = marco && marco.getBoundingClientRect().bottom < alturaTela * 0.5;
+      const alvo = passou ? cta.dataset.depoisHref : cta.dataset.antesHref;
+      const texto = passou ? cta.dataset.depoisTexto : cta.dataset.antesTexto;
+      if (alvo && cta.getAttribute("href") !== alvo) {
         cta.setAttribute("href", alvo);
         const span = cta.querySelector(".botao__texto");
         if (span) span.textContent = texto;

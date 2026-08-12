@@ -32,8 +32,12 @@ function guardarIntroVista() {
 export async function iniciarIntro() {
   const preloader = document.getElementById("preloader");
   const corpo = document.body;
+  // páginas sem introdução (o estúdio, por exemplo) já entram prontas
   if (!preloader) {
     corpo.dataset.preload = "off";
+    document.documentElement.classList.add("pronto");
+    corpo.classList.add("pronto");
+    window.dispatchEvent(new CustomEvent("quik:intro-fim"));
     return;
   }
 

@@ -109,12 +109,15 @@
         <li><a href="#express" data-nav>Express</a></li>
         <li><a href="#bagagem" data-nav>Bagagem</a></li>
         <li><a href="#para-quem" data-nav>Para quem</a></li>
-        <li><a href="#estudio" data-nav>Estúdio 3D</a></li>
-        <li><a href="#processo" data-nav>Processo</a></li>
+        <li><a href="estudio.html">Estúdio 3D</a></li>
+        <li><a href="#contato" data-nav>Contato</a></li>
       </ul>
     </nav>
 
-    <a class="botao botao--linha botao--compacto cabecalho__cta" href="#estudio" data-magnetico>
+    <a class="botao botao--linha botao--compacto cabecalho__cta" href="estudio.html" data-magnetico
+       data-marco="#estudio-chamada"
+       data-antes-href="estudio.html" data-antes-texto="Criar meu uniforme"
+       data-depois-href="#contato" data-depois-texto="Solicitar orçamento">
       <span class="botao__texto">Criar meu uniforme</span>
     </a>
 
@@ -133,8 +136,7 @@
       <li><a href="#express">Express<span aria-hidden="true">2 a 3 dias</span></a></li>
       <li><a href="#bagagem">Bagagem<span aria-hidden="true">20 anos</span></a></li>
       <li><a href="#para-quem">Para quem<span aria-hidden="true">públicos</span></a></li>
-      <li><a href="#estudio">Estúdio 3D<span aria-hidden="true">monte a sua</span></a></li>
-      <li><a href="#processo">Processo<span aria-hidden="true">4 etapas</span></a></li>
+      <li><a href="estudio.html">Estúdio 3D<span aria-hidden="true">monte a sua</span></a></li>
       <li><a href="#contato">Contato<span aria-hidden="true">WhatsApp</span></a></li>
     </ul>
   </nav>
@@ -171,7 +173,7 @@
       </p>
 
       <div class="hero__acoes">
-        <a class="botao botao--linha" href="#estudio" data-magnetico>
+        <a class="botao botao--linha" href="estudio.html" data-magnetico>
           <span class="botao__texto">Experimentar em 3D</span>
           <span class="botao__seta" aria-hidden="true">→</span>
         </a>
@@ -372,7 +374,7 @@
               <h3 data-titulo>&nbsp;</h3>
               <p data-descricao>&nbsp;</p>
               <ul class="painel-publico__pecas" data-pecas></ul>
-              <a class="botao botao--fantasma botao--compacto" href="#estudio" data-magnetico>
+              <a class="botao botao--fantasma botao--compacto" href="estudio.html" data-magnetico>
                 <span class="botao__texto">Montar uma peça assim</span>
               </a>
             </div>
@@ -387,247 +389,48 @@
   </div>
 </section>
 
-<!-- ===================== estúdio 3D ===================== -->
-<section class="estudio" id="estudio" aria-labelledby="estudio-titulo">
-  <div class="estudio__entrada" data-entrada>
-    <p class="rotulo rotulo--linha">Estúdio 3D Quik</p>
-    <h2 class="estudio__titulo" id="estudio-titulo">
-      Monte a peça agora. <em>Sem esperar arte.</em>
-    </h2>
-    <p class="estudio__intro">
-      Escolha uma base, use uma cor pronta ou monte seu próprio tom em RGB, envie várias
-      artes e posicione cada uma na frente, nas costas ou nas mangas. Gire, aproxime e baixe
-      a prévia quando quiser. O estúdio é uma ferramenta opcional para explorar ideias.
-    </p>
-  </div>
-
-  <div class="estudio__palco" id="estudio-palco">
-    <!-- visor -->
-    <div class="visor" id="visor">
-      <div class="visor__moldura" aria-hidden="true">
-        <span class="visor__canto visor__canto--tl"></span>
-        <span class="visor__canto visor__canto--tr"></span>
-        <span class="visor__canto visor__canto--bl"></span>
-        <span class="visor__canto visor__canto--br"></span>
-      </div>
-
-      <div class="visor__tela" id="visor-tela"
-           tabindex="0" role="application"
-           aria-label="Prévia tridimensional da peça. Use as setas para girar, mais e menos para aproximar."
-           aria-describedby="visor-descricao"></div>
-
-      <p class="visor__descricao visao-oculta" id="visor-descricao" data-descricao-3d>
-        Prévia de uma camiseta na cor preto carvão, sem estampa aplicada.
+<!-- ===================== chamada do estúdio 3D ===================== -->
+<section class="chamada-estudio" id="estudio-chamada" aria-labelledby="chamada-estudio-titulo">
+  <div class="chamada-estudio__grade">
+    <div class="chamada-estudio__texto">
+      <p class="rotulo rotulo--linha">Estúdio 3D Quik</p>
+      <h2 class="chamada-estudio__titulo" id="chamada-estudio-titulo">
+        Monte a peça agora. <em>Sem esperar arte.</em>
+      </h2>
+      <p class="chamada-estudio__intro">
+        Escolha uma base, teste um tom pronto ou monte o seu em RGB, jogue a sua logo na
+        frente, nas costas ou nas mangas e gire a peça em 3D.
       </p>
-
-      <div class="visor__carregando" data-carregando hidden>
-        <span class="agulha-girando" aria-hidden="true"></span>
-        <p>montando a peça…</p>
-      </div>
-
-      <div class="visor__sem-3d" data-sem-3d hidden>
-        <p><strong>Seu navegador não abriu o 3D.</strong> Sem problema: o estúdio continua
-          funcionando em modo plano — cor, logo, posição, tamanho e captura.</p>
-      </div>
-
-      <div class="visor__barra">
-        <div class="visor__giro" role="group" aria-label="Câmera">
-          <button type="button" class="tecla" data-camera="girar-esq" aria-label="Girar para a esquerda"><span aria-hidden="true">↺</span></button>
-          <button type="button" class="tecla" data-camera="frente">Frente</button>
-          <button type="button" class="tecla" data-camera="costas">Costas</button>
-          <button type="button" class="tecla" data-camera="girar-dir" aria-label="Girar para a direita"><span aria-hidden="true">↻</span></button>
-        </div>
-        <div class="visor__zoom" role="group" aria-label="Zoom">
-          <button type="button" class="tecla" data-camera="menos" aria-label="Afastar a câmera"><span aria-hidden="true">−</span></button>
-          <button type="button" class="tecla" data-camera="mais" aria-label="Aproximar a câmera"><span aria-hidden="true">+</span></button>
-          <button type="button" class="tecla" data-camera="reiniciar">Reiniciar vista</button>
-        </div>
-      </div>
-
-      <p class="visor__dica" data-dica-visor>
-        Arraste para girar · arraste sobre a estampa para movê-la
-      </p>
+      <ul class="chamada-estudio__itens">
+        <li>Bases para comparar silhuetas</li>
+        <li>Cor da paleta ou RGB livre</li>
+        <li>Várias artes por área</li>
+        <li>Download da prévia em 4 vistas</li>
+      </ul>
     </div>
 
-    <!-- painel de controles -->
-    <div class="painel" id="painel-estudio">
-      <button class="painel__puxador" type="button" id="painel-puxador"
-              aria-expanded="false" aria-controls="painel-conteudo">
-        <span class="painel__puxador-linha" aria-hidden="true"></span>
-        <span>Personalizar</span>
-      </button>
-
-      <div class="painel__conteudo" id="painel-conteudo">
-
-        <fieldset class="grupo">
-          <legend><span class="grupo__num" aria-hidden="true">01</span> Peça</legend>
-          <div class="pecas" data-pecas-lista role="radiogroup" aria-label="Tipo de peça"></div>
-          <p class="grupo__nota" data-nota-peca></p>
-        </fieldset>
-
-        <fieldset class="grupo">
-          <legend><span class="grupo__num" aria-hidden="true">02</span> Cor da peça</legend>
-          <div class="cores" data-cores-lista role="radiogroup" aria-label="Cor da peça"></div>
-          <div class="cor-livre" data-editor-cor>
-            <div class="cor-livre__cabeca">
-              <label for="cor-personalizada">Cor personalizada</label>
-              <input type="color" id="cor-personalizada" value="#1b1d21" data-cor-livre>
-              <output data-cor-nome>Preto carvão</output>
-            </div>
-            <div class="rgb" role="group" aria-label="Valores RGB da cor personalizada">
-              <label>R <input type="number" min="0" max="255" value="27" inputmode="numeric" data-rgb="r"></label>
-              <label>G <input type="number" min="0" max="255" value="29" inputmode="numeric" data-rgb="g"></label>
-              <label>B <input type="number" min="0" max="255" value="33" inputmode="numeric" data-rgb="b"></label>
-            </div>
-            <label class="cor-opacidade">
-              <span>Opacidade da cor <span data-cor-alpha>100%</span></span>
-              <input type="range" min="0" max="100" value="100" step="1" data-cor-opacidade>
-            </label>
-          </div>
-          <p class="grupo__nota">A opacidade mistura o tom escolhido com uma base clara de tecido.</p>
-        </fieldset>
-
-        <fieldset class="grupo">
-          <legend><span class="grupo__num" aria-hidden="true">03</span> Sua logo ou estampa</legend>
-
-          <div class="envio" data-envio>
-            <input type="file" id="arquivo-estampa" accept="image/png,image/jpeg,image/svg+xml"
-                   data-arquivo class="visao-oculta" multiple>
-            <label class="envio__area" for="arquivo-estampa" data-solta>
-              <span class="envio__icone" aria-hidden="true"></span>
-              <span class="envio__texto"><strong>Adicionar artes</strong>
-                <small>PNG, JPG ou SVG · até 8 MB cada · selecione várias se quiser</small></span>
-            </label>
-            <p class="envio__erro" role="alert" data-erro-envio hidden></p>
-          </div>
-
-          <div class="areas" data-areas>
-            <p class="areas__rotulo" id="areas-rotulo">Onde aplicar</p>
-            <div class="areas__lista" role="radiogroup" aria-labelledby="areas-rotulo" data-areas-lista></div>
-          </div>
-
-          <div class="camadas" data-camadas hidden>
-            <p class="areas__rotulo" id="camadas-rotulo">Artes nesta área</p>
-            <div class="camadas__lista" role="group" aria-labelledby="camadas-rotulo" data-camadas-lista></div>
-          </div>
-
-          <div class="prancheta" data-prancheta hidden>
-            <div class="prancheta__cabeca">
-              <p>Prancheta <em data-area-nome>frente</em></p>
-            </div>
-            <div class="prancheta__palco" data-prancheta-palco
-                 tabindex="0" role="application"
-                 aria-label="Posicione a estampa: arraste, ou use as setas do teclado para mover">
-              <canvas data-prancheta-canvas width="300" height="375" aria-hidden="true"></canvas>
-              <div class="prancheta__caixa" data-caixa hidden>
-                <span class="prancheta__alca" data-alca aria-hidden="true"></span>
-              </div>
-            </div>
-
-            <div class="controles">
-              <label>
-                <span>Tamanho <span data-saida="escala">40%</span></span>
-                <input type="range" min="1" max="100" value="40" step="1" data-ctrl="escala">
-              </label>
-              <label>
-                <span>Rotação <span data-saida="rotacao">0°</span></span>
-                <input type="range" min="-180" max="180" value="0" step="1" data-ctrl="rotacao">
-              </label>
-              <div class="controles__pares">
-                <label>
-                  <span>Horizontal <span data-saida="x">centro</span></span>
-                  <input type="range" min="0" max="100" value="50" step="1" data-ctrl="x">
-                </label>
-                <label>
-                  <span>Vertical <span data-saida="y">50%</span></span>
-                  <input type="range" min="0" max="100" value="50" step="1" data-ctrl="y">
-                </label>
-              </div>
-              <button type="button" class="mini" data-centralizar>Centralizar na área</button>
-            </div>
-          </div>
-        </fieldset>
-
-        <div class="painel__acoes">
-          <button type="button" class="botao botao--linha botao--largo" data-captura data-magnetico>
-            <span class="botao__texto">Baixar 4 vistas da peça</span>
-          </button>
-          <button type="button" class="botao botao--fantasma botao--largo painel__reset" data-reset-estudio>
-            <span class="botao__texto">Resetar estúdio</span>
-          </button>
-          <p class="painel__salvo" data-estado-salvo aria-live="polite">
-            Salvo automaticamente neste navegador.
-          </p>
-        </div>
-
-        <p class="painel__aviso">
-          A prévia é uma aproximação para decidir cor, posição e tamanho. Cores de tela variam
-          conforme o monitor e não substituem a prova física.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <p class="estudio__estado visao-oculta" role="status" aria-live="polite" data-estado-estudio></p>
-</section>
-
-<!-- ===================== processo ===================== -->
-<section class="processo secao--papel" id="processo" aria-labelledby="processo-titulo">
-  <div class="secao__cabeca">
-    <p class="rotulo">Processo</p>
-    <h2 class="processo__titulo" id="processo-titulo">O que você pode testar <em>no estúdio.</em></h2>
-    <p class="processo__intro">Use só o que ajudar na sua ideia. Nada aqui é obrigatório para entrar em contato ou solicitar um orçamento.</p>
-  </div>
-
-  <div class="processo__trilho" data-processo>
-    <div class="processo__visual">
-      <div class="processo__peca" data-peca-processo>
-        <svg viewBox="0 0 200 200" role="img" aria-labelledby="processo-svg-titulo">
-          <title id="processo-svg-titulo">Ilustração das possibilidades do Estúdio 3D</title>
-          <g class="pp-molde">
-            <path class="pp-corpo" d="M66 26 L86 13 C94 30 106 30 114 13 L134 26
-                 C152 37 149 52 146 64 L150 172 L50 172 L54 64 C51 52 48 37 66 26 Z"/>
-            <path class="pp-manga pp-manga--esq" d="M66 26 C48 37 51 52 54 64 L28 76 L17 44 Z"/>
-            <path class="pp-manga pp-manga--dir" d="M134 26 C152 37 149 52 146 64 L172 76 L183 44 Z"/>
-          </g>
-          <g class="pp-costura">
-            <path d="M54 64 L50 172"/><path d="M146 64 L150 172"/><path d="M50 172 L150 172"/>
-          </g>
-          <rect class="pp-estampa" x="76" y="72" width="48" height="48" rx="1"/>
-          <g class="pp-confere">
-            <path d="M80 96 l10 10 l20 -22"/>
-          </g>
-          <g class="pp-etiqueta">
-            <rect x="88" y="34" width="24" height="10" rx="1"/>
-            <path d="M92 39 h16"/>
-          </g>
+    <a class="cartao-estudio" href="estudio.html" data-magnetico>
+      <span class="cartao-estudio__palco" aria-hidden="true">
+        <span class="cartao-estudio__canto cartao-estudio__canto--tl"></span>
+        <span class="cartao-estudio__canto cartao-estudio__canto--tr"></span>
+        <span class="cartao-estudio__canto cartao-estudio__canto--bl"></span>
+        <span class="cartao-estudio__canto cartao-estudio__canto--br"></span>
+        <svg class="cartao-estudio__peca" viewBox="0 0 200 200">
+          <path class="ce-manga" d="M66 26 C48 37 51 52 54 64 L28 76 L17 44 Z"/>
+          <path class="ce-manga" d="M134 26 C152 37 149 52 146 64 L172 76 L183 44 Z"/>
+          <path class="ce-corpo" d="M66 26 L86 13 C94 30 106 30 114 13 L134 26
+               C152 37 149 52 146 64 L150 172 L50 172 L54 64 C51 52 48 37 66 26 Z"/>
+          <path class="ce-costura" d="M54 64 L50 172"/>
+          <path class="ce-costura" d="M146 64 L150 172"/>
+          <rect class="ce-estampa" x="78" y="74" width="44" height="44" rx="1"/>
         </svg>
-      </div>
-      <p class="processo__contador" aria-hidden="true"><span data-contador>01</span><i>/04</i></p>
-    </div>
-
-    <ol class="processo__etapas" data-etapas>
-      <li data-etapa="1">
-        <h3><span aria-hidden="true">01</span> Experimente uma base</h3>
-        <p>Troque o modelo e compare silhuetas. As opções do estúdio são pontos de partida,
-          não um catálogo fechado do que a Quik produz.</p>
-      </li>
-      <li data-etapa="2">
-        <h3><span aria-hidden="true">02</span> Teste as cores</h3>
-        <p>Comece por um tom da paleta ou crie outro com valores RGB e opacidade. A tela serve
-          para comparar caminhos; a cor final sempre é conferida na produção.</p>
-      </li>
-      <li data-etapa="3">
-        <h3><span aria-hidden="true">03</span> Combine suas artes</h3>
-        <p>Adicione várias imagens na mesma área ou distribua entre frente, costas e mangas.
-          Cada arte pode ser movida, girada e redimensionada separadamente.</p>
-      </li>
-      <li data-etapa="4">
-        <h3><span aria-hidden="true">04</span> Veja e salve a ideia</h3>
-        <p>Gire a peça, confira outros lados, aproxime os detalhes e baixe uma imagem da prévia
-          se quiser guardar ou compartilhar a referência.</p>
-      </li>
-    </ol>
+        <span class="cartao-estudio__eixo"></span>
+      </span>
+      <span class="cartao-estudio__rodape">
+        <span class="cartao-estudio__rotulo">abrir a ferramenta</span>
+        <span class="cartao-estudio__acao">Entrar no Estúdio 3D<i aria-hidden="true">→</i></span>
+      </span>
+    </a>
   </div>
 </section>
 
@@ -724,8 +527,8 @@
         <li><a href="#express">Produção express</a></li>
         <li><a href="#bagagem">Bagagem</a></li>
         <li><a href="#para-quem">Para quem</a></li>
-        <li><a href="#estudio">Estúdio 3D Quik</a></li>
-        <li><a href="#processo">Processo</a></li>
+        <li><a href="estudio.html">Estúdio 3D Quik</a></li>
+        <li><a href="estudio.html#processo">O que testar no estúdio</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
     </nav>
@@ -747,21 +550,6 @@
     </p>
   </div>
 </footer>
-
-<!-- confirmação de reset do estúdio -->
-<dialog class="confirmacao-reset" data-dialog-reset aria-labelledby="reset-titulo" aria-describedby="reset-texto">
-  <form method="dialog" class="confirmacao-reset__caixa">
-    <p class="rotulo">Estúdio 3D</p>
-    <h2 id="reset-titulo">Resetar todo o projeto?</h2>
-    <p id="reset-texto">
-      A peça, a cor e todas as artes salvas neste navegador serão apagadas. Essa ação não pode ser desfeita.
-    </p>
-    <div class="confirmacao-reset__acoes">
-      <button type="submit" class="botao botao--fantasma" value="cancelar">Cancelar</button>
-      <button type="submit" class="botao botao--linha" value="resetar">Sim, resetar</button>
-    </div>
-  </form>
-</dialog>
 
 </body>
 </html>
